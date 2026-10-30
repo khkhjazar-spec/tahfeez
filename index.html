@@ -62,15 +62,26 @@ tr.r{cursor:pointer}tr.sel td.nm{outline:2px solid var(--ac)}
  #rpt tr{page-break-inside:avoid}
  #rpt .ft{margin-top:8px;font-size:9pt;color:#444;text-align:center}
  #rpt .y{color:#146c43}#rpt .no{color:#b00020}
-}.lk{color:var(--ac);border:1px solid var(--ac);border-radius:10px;padding:9px 12px;text-decoration:none;white-space:nowrap;font-size:.95rem}.att{width:32px;height:32px;border-radius:50%;border:0!important;color:#fff!important;font-size:1rem;margin:0!important;padding:0!important;cursor:pointer;flex:none;width:32px!important}.att.pres{background:#1b8a4a}.att.abs{background:#d32f2f}td.nm{white-space:nowrap;text-align:right}.mc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:8px}.mk{display:flex;align-items:center;gap:8px;border:1px solid var(--bd);border-radius:10px;padding:8px 12px;margin:0;color:var(--tx);font-size:1rem;cursor:pointer}.mk input{width:20px;height:20px;padding:0;margin:0}.fo{background:#ffb74d!important;color:#000!important}.fy{background:#fff176!important;color:#000!important}.fb{background:#ef5350!important;color:#000!important}.lg{padding:2px 8px;border-radius:6px;color:#000;display:inline-block;margin:2px}.pc-ok{color:#1b8a4a;font-weight:bold}.pc-bad{color:#d32f2f;font-weight:bold}td.mp{font-size:.8rem;line-height:1.7;min-width:130px}</style></head>
+}.lk{color:var(--ac);border:1px solid var(--ac);border-radius:10px;padding:9px 12px;text-decoration:none;white-space:nowrap;font-size:.95rem}.att{width:32px;height:32px;border-radius:50%;border:0!important;color:#fff!important;font-size:1rem;margin:0!important;padding:0!important;cursor:pointer;flex:none;width:32px!important}.att.pres{background:#1b8a4a}.att.abs{background:#d32f2f}td.nm{white-space:nowrap;text-align:right}.mc{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:8px}.mk{display:flex;align-items:center;gap:8px;border:1px solid var(--bd);border-radius:10px;padding:8px 12px;margin:0;color:var(--tx);font-size:1rem;cursor:pointer}.mk input{width:20px;height:20px;padding:0;margin:0}.fo{background:#ffb74d!important;color:#000!important}.fy{background:#fff176!important;color:#000!important}.fb{background:#ef5350!important;color:#000!important}.lg{padding:2px 8px;border-radius:6px;color:#000;display:inline-block;margin:2px}.pc-ok{color:#1b8a4a;font-weight:bold}.pc-bad{color:#d32f2f;font-weight:bold}td.mp{font-size:.8rem;line-height:1.7;min-width:130px}</style><style>
+.topbar{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.tbn{width:auto!important;margin:0!important;padding:9px 10px!important;font-size:.9rem!important;white-space:nowrap;color:var(--ac)!important;border-color:var(--ac)!important}
+.bd2{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:40;opacity:0;pointer-events:none;transition:opacity .25s}
+.bd2.on{opacity:1;pointer-events:auto}
+.dr{position:fixed;top:0;bottom:0;width:min(96vw,780px);background:var(--card);color:var(--tx);z-index:50;overflow-y:auto;box-sizing:border-box;padding:0 16px 24px;padding-top:env(safe-area-inset-top,0px);transition:transform .25s ease,visibility 0s linear .25s;box-shadow:0 0 24px rgba(0,0,0,.3);visibility:hidden}
+.dr.on{visibility:visible;transition:transform .25s ease,visibility 0s}
+.drl{left:0;transform:translateX(-105%);border-radius:0 16px 16px 0}
+.drr{right:0;transform:translateX(105%);border-radius:16px 0 0 16px}
+.dr.on{transform:none}
+.drh{position:sticky;top:0;z-index:2;background:var(--card);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--bd);margin-bottom:8px}
+.xb{width:auto!important;margin:0!important;padding:8px 14px!important}
+.edge{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:30;width:26px;height:78px;background:var(--ac);color:var(--bg);display:flex;align-items:center;justify-content:center;border-radius:0 12px 12px 0;font-size:1.6rem;cursor:pointer;opacity:.85}
+body.lk2{overflow:hidden}
+@media print{.dr,.bd2,.edge{display:none!important}}
+</style>
+</head>
 <body>
 <div class="c">
-<h1>📖 حفظ ومراجعة الطلاب</h1>
-<label for="hl">حلقة الشيخ</label><input id="hl" placeholder="اكتب اسم الشيخ" autocomplete="off">
-<label for="cl">الصف</label><input id="cl" placeholder="اكتب الصف" autocomplete="off">
-<label for="names">أسماء الطلاب (اسم في كل سطر، حتى 25 اسمًا)</label>
-<textarea id="names" rows="5" placeholder="محمد&#10;أحمد&#10;..."></textarea>
-
+<div class="topbar"><button type="button" class="tbn" id="openSet">⚙️ الإعدادات</button><h1 style="margin:0;flex:1;font-size:1.05rem;line-height:1.35">📖 حفظ ومراجعة الطلاب</h1><button type="button" class="tbn" id="openSum">📊 الملخص</button></div>
 <label class="addb">＋ إضافة جلسة<input id="nd" type="date"></label>
 <div class="dn" id="dn" style="text-align:center;margin-top:10px"></div>
 <div class="n">جلسة واحدة لكل يوم · الآية الأخيرة (إلى) تُرحَّل تلقائيًا إلى بداية (من) في اليوم التالي، للحفظ والمراجعة</div>
@@ -78,17 +89,14 @@ tr.r{cursor:pointer}tr.sel td.nm{outline:2px solid var(--ac)}
 <div class="sb"><select id="who"></select><button id="attb" type="button" class="att pres">✓</button></div>
 <div class="pl"><div><label>خطة الحفظ لهذا الطالب (صفحات)</label><input id="pm" type="number" min="0" step="any" inputmode="decimal"></div>
 <div><label>خطة المراجعة لهذا الطالب (صفحات)</label><input id="pr" type="number" min="0" step="any" inputmode="decimal"></div></div>
-<details style="margin-top:10px"><summary class="n" style="cursor:pointer;text-align:right">📋 تعميم خطة على كل الطلاب دفعة واحدة</summary>
-<div class="pl"><div><label>خطة الحفظ للجميع (صفحات)</label><input id="gpm" type="number" min="0" step="any" inputmode="decimal"></div>
-<div><label>خطة المراجعة للجميع (صفحات)</label><input id="gpr" type="number" min="0" step="any" inputmode="decimal"></div></div>
-<button id="gpa" class="pri" type="button">تطبيق على جميع الطلاب</button>
-<div class="n" id="gpmsg" style="text-align:center"></div>
-<div class="n" style="text-align:center">يُطبَّق ما كتبته فقط، ثم تعدّل خطة من يختلف عن البقية من خانتيه أعلاه</div></details>
 <div class="n" id="absn" style="text-align:center;color:#d32f2f;font-weight:bold;margin-top:10px"></div>
 <div id="cards" class="off"></div>
 <div class="sb"><button id="sv" class="pri" style="flex:1">💾 حفظ الجلسة</button></div>
 <div class="n" id="svs" style="text-align:center"></div>
-<h2 style="margin-top:20px">ملخص الطلاب</h2>
+</div>
+<div class="bd2" id="bd2"></div>
+<aside class="dr drl" id="drSum" aria-label="ملخص الطلاب"><div class="drh"><button type="button" class="xb" data-close="1">✕ إغلاق</button></div>
+<h2>ملخص الطلاب</h2>
 <div class="n" id="hld" style="text-align:center;font-weight:bold;color:var(--ac)"></div>
 <select id="scope" style="margin-top:8px"></select>
 <div class="n" style="text-align:right">أيام الجلسات المتوقعة في الشهر (اختياري — لتحسين مؤشر المسار)</div>
@@ -103,6 +111,18 @@ tr.r{cursor:pointer}tr.sel td.nm{outline:2px solid var(--ac)}
 <button id="pdf" class="pri">📄 تصدير الكشف PDF</button>
 <div class="n" style="text-align:center">يُنشأ ملف PDF بحجم A4 ويُنزَّل مباشرة على جهازك (مجلد التنزيلات)</div>
 <div class="n" id="pdfmsg" style="text-align:center"></div>
+</aside>
+<aside class="dr drr" id="drSet" aria-label="الإعدادات"><div class="drh"><button type="button" class="xb" data-close="1">✕ إغلاق</button><b style="color:var(--ac)">⚙️ الإعدادات</b></div>
+<label for="hl">حلقة الشيخ</label><input id="hl" placeholder="اكتب اسم الشيخ" autocomplete="off">
+<label for="cl">الصف</label><input id="cl" placeholder="اكتب الصف" autocomplete="off">
+<label for="names">أسماء الطلاب (اسم في كل سطر، حتى 25 اسمًا)</label>
+<textarea id="names" rows="5" placeholder="محمد&#10;أحمد&#10;..."></textarea>
+<details style="margin-top:10px"><summary class="n" style="cursor:pointer;text-align:right">📋 تعميم خطة على كل الطلاب دفعة واحدة</summary>
+<div class="pl"><div><label>خطة الحفظ للجميع (صفحات)</label><input id="gpm" type="number" min="0" step="any" inputmode="decimal"></div>
+<div><label>خطة المراجعة للجميع (صفحات)</label><input id="gpr" type="number" min="0" step="any" inputmode="decimal"></div></div>
+<button id="gpa" class="pri" type="button">تطبيق على جميع الطلاب</button>
+<div class="n" id="gpmsg" style="text-align:center"></div>
+<div class="n" style="text-align:center">يُطبَّق ما كتبته فقط، ثم تعدّل خطة من يختلف عن البقية من خانتيه أعلاه</div></details>
 <details style="margin-top:14px"><summary class="n" style="cursor:pointer;text-align:right">📚 دقة حساب الصفحات (اختياري)</summary>
 <div class="n" id="pgs" style="text-align:right"></div>
 <div class="sb"><label class="lk" style="flex:1;text-align:center;position:relative;overflow:hidden;margin:0;cursor:pointer">📂 استيراد جدول صفحات المصحف<input id="pf" type="file" accept=".js,.json,.csv,.txt,text/*,application/json" style="position:absolute;top:0;right:0;width:100%;height:100%;opacity:0;font-size:16px;cursor:pointer"></label><button id="pgx" type="button" style="margin:0;width:auto">إزالة</button></div>
@@ -112,8 +132,9 @@ tr.r{cursor:pointer}tr.sel td.nm{outline:2px solid var(--ac)}
 <div class="sb" style="margin-top:14px"><button id="bk" class="pri" style="flex:1">💾 حفظ نسخة احتياطية</button><label class="lk" style="flex:1;text-align:center;position:relative;overflow:hidden;margin:0;cursor:pointer">📂 استعادة من نسخة<input id="rs" type="file" accept=".json,application/json,text/plain" style="position:absolute;top:0;right:0;width:100%;height:100%;opacity:0;font-size:16px;cursor:pointer"></label></div>
 <div class="n" id="bkm" style="text-align:center"></div>
 <button id="clr">مسح كل البيانات</button>
-<div class="n" style="text-align:center;margin-top:8px">الإصدار 25</div>
-</div>
+<div class="n" style="text-align:center;margin-top:8px">الإصدار 26</div>
+</aside>
+<div class="edge" id="edge" title="الملخص">‹</div>
 <div id="rpt"></div>
 <script>
 const N="الفاتحة،البقرة،آل عمران،النساء،المائدة،الأنعام،الأعراف،الأنفال،التوبة،يونس،هود،يوسف،الرعد،إبراهيم،الحجر،النحل،الإسراء،الكهف،مريم،طه،الأنبياء،الحج،المؤمنون،النور،الفرقان،الشعراء،النمل،القصص،العنكبوت،الروم،لقمان،السجدة،الأحزاب،سبأ،فاطر،يس،الصافات،ص،الزمر،غافر،فصلت،الشورى،الزخرف،الدخان،الجاثية،الأحقاف،محمد،الفتح،الحجرات،ق،الذاريات،الطور،النجم،القمر،الرحمن،الواقعة،الحديد،المجادلة،الحشر،الممتحنة،الصف،الجمعة،المنافقون،التغابن،الطلاق،التحريم،الملك،القلم،الحاقة،المعارج،نوح،الجن،المزمل،المدثر،القيامة،الإنسان،المرسلات،النبأ،النازعات،عبس،التكوير،الانفطار،المطففين،الانشقاق،البروج،الطارق،الأعلى،الغاشية،الفجر،البلد،الشمس،الليل،الضحى،الشرح،التين،العلق،القدر،البينة،الزلزلة،العاديات،القارعة،التكاثر،العصر،الهمزة،الفيل،قريش،الماعون،الكوثر،الكافرون،النصر،المسد،الإخلاص،الفلق،الناس".split("،");
@@ -393,20 +414,20 @@ txt("تظليل الاسم: برتقالي = لم يجتز الحفظ  ·  أص�
  const b64=cv.toDataURL("image/jpeg",0.92).split(",")[1],bin=atob(b64),u=new Uint8Array(bin.length);
  for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
  const pdf=buildPDF(u,W,H),name="كشف-"+m+".pdf",url=URL.createObjectURL(pdf),jurl=URL.createObjectURL(new Blob([u],{type:"image/jpeg"}));
- try{const a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove()}catch(e){}
+ if(isNat())nativeSave(pdf,"kashf-"+m+".pdf");else try{const a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove()}catch(e){}
  $("pdfmsg").innerHTML='<div>✔ تم إنشاء الكشف. إن لم يُنزَّل تلقائيًا فاستخدم أحد الخيارات:</div>'
   +'<div class="sb" style="margin-top:8px;flex-wrap:wrap;justify-content:center"><a class="lk" href="'+url+'" download="'+name+'">⬇ تنزيل PDF</a><a class="lk" href="'+jurl+'" download="كشف-'+m+'.jpg">⬇ تنزيل صورة</a><button type="button" id="shr" style="margin:0;width:auto">📤 مشاركة / حفظ</button></div>'
   +'<div class="n" style="margin-top:8px">أو اضغط مطولًا على الصورة ثم اختر «تنزيل الصورة». وإن لم ينجح شيء فافتح الملف عبر متصفح Chrome</div><img src="'+jurl+'" style="width:100%;margin-top:8px;border:1px solid var(--bd);border-radius:8px;background:#fff">';
- $("shr").onclick=()=>{try{const file=new File([pdf],name,{type:"application/pdf"});
+ $("shr").onclick=()=>{if(isNat()){nativeSave(pdf,"kashf-"+m+".pdf");return}try{const file=new File([pdf],name,{type:"application/pdf"});
   if(navigator.canShare&&navigator.canShare({files:[file]}))navigator.share({files:[file],title:name}).catch(()=>{});else alert("المشاركة غير مدعومة في هذا المتصفح")}catch(e){alert("المشاركة غير مدعومة في هذا المتصفح")}}}
 $("pdf").onclick=pdfReport;
 $("rmc").onchange=()=>{ST.rms=[...$("rmc").querySelectorAll("input")].filter(i=>i.checked).map(i=>i.value);save()};
 const bkInfo=()=>{$("bkm").textContent=ST.lastbk?"آخر نسخة احتياطية: "+ST.lastbk.slice(0,10):"⚠️ لم تحفظ نسخة احتياطية بعد"};
 function backup(){ST.lastbk=new Date().toISOString();save();
  const txt=JSON.stringify(Object.assign({},ST,{bk:1})),name="نسخة-احتياطية-"+today()+".json",blob=new Blob([txt],{type:"application/json"}),url=URL.createObjectURL(blob);
- try{const a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove()}catch(e){}
+ if(isNat())nativeSave(blob,"tahfeez-backup-"+today()+".json");else try{const a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove()}catch(e){}
  $("bkm").innerHTML='✔ تم تجهيز النسخة الاحتياطية ('+ST.lastbk.slice(0,10)+'). إن لم تُنزَّل فاستخدم: <a class="lk" href="'+url+'" download="'+name+'">⬇ تنزيل</a> <button type="button" id="bks" style="margin:0;width:auto">📤 مشاركة / حفظ</button>';
- $("bks").onclick=()=>{try{const fl=new File([txt],name,{type:"text/plain"});if(navigator.canShare&&navigator.canShare({files:[fl]}))navigator.share({files:[fl],title:name}).catch(()=>{});else alert("المشاركة غير مدعومة في هذا المتصفح")}catch(e){alert("المشاركة غير مدعومة في هذا المتصفح")}}}
+ $("bks").onclick=()=>{if(isNat()){nativeSave(blob,"tahfeez-backup-"+today()+".json");return}try{const fl=new File([txt],name,{type:"text/plain"});if(navigator.canShare&&navigator.canShare({files:[fl]}))navigator.share({files:[fl],title:name}).catch(()=>{});else alert("المشاركة غير مدعومة في هذا المتصفح")}catch(e){alert("المشاركة غير مدعومة في هذا المتصفح")}}}
 $("bk").onclick=()=>{try{backup()}catch(e){$("bkm").textContent="تعذّر إنشاء النسخة: "+(e&&e.message||e)}};
 $("rs").onchange=async e=>{const fl=e.target.files[0];e.target.value="";if(!fl)return;
  try{const d=JSON.parse(await fl.text());if(!d||!Array.isArray(d.sess)||typeof d.names!="string")throw 0;
@@ -430,10 +451,40 @@ $("pf").onchange=async e=>{const fl=e.target.files[0];e.target.value="";if(fl)lo
 $("pgb").onclick=()=>{if(loadPages($("pgt").value))$("pgt").value=""};
 $("pgx").onclick=()=>{delete ST.pages;KN=buildKN();save();pgInfo();$("pgm").textContent="";load()};
 $("scope").onchange=e=>{ST.scope=e.target.value;save();refresh()};
-$("tb").onclick=e=>{const a=e.target.closest(".att");if(a){toggleAbs(a.dataset.a);return}const r=e.target.closest("tr.r");if(r){ST.sel=r.dataset.n;$("who").value=ST.sel;save();load();$("who").scrollIntoView({behavior:"smooth"})}};
+$("tb").onclick=e=>{const a=e.target.closest(".att");if(a){toggleAbs(a.dataset.a);return}const r=e.target.closest("tr.r");if(r){ST.sel=r.dataset.n;$("who").value=ST.sel;save();load();if(window.closeDrawers)closeDrawers();setTimeout(()=>$("who").scrollIntoView({behavior:"smooth"}),150)}};
 $("clr").onclick=()=>{if(confirm("مسح كل الأسماء والجلسات والبيانات؟")){ST=DEF();ST.plans={};ensureModel();$("names").value=$("hl").value=$("cl").value="";hlShow();whoSync();sessSync();save();load()}};
 $("ex").value=ST.exp||"";$("names").value=ST.names;$("hl").value=ST.hl||"";$("cl").value=ST.cl||"";hlShow();
 whoSync();sessSync();load();bkInfo();pgInfo();
+/* ===== الدرجان الجانبيان ===== */
+(function(){
+ const dS=$("drSum"),dT=$("drSet"),bd=$("bd2");let cur=null;
+ function open(d){cur=d;d.classList.add("on");bd.classList.add("on");document.body.classList.add("lk2");try{history.pushState({dr:1},"")}catch(e){}}
+ function close(fromPop){if(!cur)return;cur.classList.remove("on");bd.classList.remove("on");document.body.classList.remove("lk2");cur=null;if(!fromPop){try{if(history.state&&history.state.dr)history.back()}catch(e){}}}
+ window.closeDrawers=close;
+ $("openSum").onclick=()=>open(dS);$("edge").onclick=()=>open(dS);$("openSet").onclick=()=>open(dT);
+ bd.onclick=()=>close();
+ document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>close());
+ addEventListener("popstate",()=>close(true));
+ let x0=null,y0=null;
+ addEventListener("touchstart",e=>{const t=e.touches[0];x0=t.clientX;y0=t.clientY},{passive:true});
+ addEventListener("touchend",e=>{if(x0===null)return;const t=e.changedTouches[0],dx=t.clientX-x0,dy=Math.abs(t.clientY-y0);
+  if(!cur&&x0<28&&dx>60&&dy<60)open(dS);
+  else if(cur===dS&&dx<-70&&dy<60)close();
+  else if(cur===dT&&dx>70&&dy<60)close();
+  x0=null},{passive:true});
+})();
+/* ===== الحفظ داخل تطبيق الأندرويد (APK) ===== */
+function isNat(){try{return !!(window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform())}catch(e){return false}}
+async function nativeSave(blob,name){
+ try{
+  const P=Capacitor.Plugins,fs=P.Filesystem,sh=P.Share;
+  if(!fs||!sh)throw new Error("إضافة الحفظ غير مثبتة");
+  const b64=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(",")[1]);r.onerror=()=>rej(r.error);r.readAsDataURL(blob)});
+  const safe=name.replace(/[^A-Za-z0-9._-]/g,"_");
+  const w=await fs.writeFile({path:safe,data:b64,directory:"CACHE"});
+  try{await sh.share({title:safe,url:w.uri,dialogTitle:"حفظ أو مشاركة الملف"})}catch(e){}
+ }catch(e){alert("تعذّر الحفظ: "+(e&&e.message||e))}
+}
 </script>
 <script>if("serviceWorker" in navigator&&location.protocol.startsWith("http")){addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>
 </body>
