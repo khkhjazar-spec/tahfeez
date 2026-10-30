@@ -18,9 +18,12 @@ jobs:
           mkdir www
           cp index.html manifest.webmanifest sw.js icon-192.png icon-512.png www/
           npm init -y
-          npm install @capacitor/core @capacitor/cli @capacitor/android
+          npm install @capacitor/core @capacitor/cli @capacitor/android @capacitor/filesystem @capacitor/share
           npx cap init "برنامج التحفيظ" com.halaqa.tahfeez --web-dir www
           npx cap add android
+          mkdir assets
+          cp icon-1024.png assets/icon-only.png
+          npx --yes @capacitor/assets generate --android --iconBackgroundColor '#14573c' --iconBackgroundColorDark '#14573c'
           npx cap sync android
           cd android
           chmod +x gradlew
